@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="jquery.mobile-1.4.5.css" />
+    <link rel="stylesheet" href="css/styles.css">
+
+
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery3_1_0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/Vibrant.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+
+    <div class="search-container">
+        <div class="search-header">
+            <span class="glyphicon glyphicon-search" id="search-icon" aria-hidden="true"></span>
+        </div>
+        <div class="search-bar">
+            <form>
+
+                <input data-type="search" id="divOfPs-input">
+            </form>
+        </div>
+    </div>
+    <div class="container-fluid main-contain" data-filter="true" data-input="#divOfPs-input">
+
+    </div>
+
+
+
+    <script>
+        // ID of the Google Spreadsheet
+        var spreadsheetID = "1t5fi52qLFTeYu5Pp5jUO95YVzEKG1-hIK50HzL9I_QU";
+
+        // google sheet  
+        var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
+
+
+        $.get(url)
+            .done(function (data) {
+
+
+
+
+                var entry = data.feed.entry.reverse();
+
+
+                for (var i = entry.length - 1; i >= 0; i -= 1) {
+
+                    var artist = entry[i]['gsx$artist']['$t'];
+                    var album = entry[i]['gsx$album']['$t'];
+                    var size = entry[i]['gsx$size']['$t'];
+                    var color = entry[i]['gsx$color']['$t'];
+                    var art = entry[i]['gsx$art']['$t'];
+
+
+                    $(".main-contain").append('<div class=" col-xs-6 col-sm-4 col-md-3 col-lg-3 album-contain" ><div class=\"contain \" style="background:url(images/'+ art +'.jpg) no-repeat center center; background-size:cover;"><div class="text row"><div class="brew-title"><span class="artist">' + artist + '</span> - <span class="beer">' + album + '</span> <span class="size">' + size + '</span> </div><div class="color"><span class="abv">' + color + '</span></div>  </div></div>  </div>');
+
+
+
+
+
+
+//$(".main-contain").append("<div class=\" col-xs-6 col-sm-4 col-md-4 col-lg-3 album-contain\"><div class=\"contain\"><div class=\"art\"><img class=\"resize-wide\" src=\"images/" + art + ".jpg\"></div><div class=\"text row\"><div class=\"brew-title\"><span class=\"artist\">" + artist + "</span> - <span class=\"beer\">" + album + "</span> <span class=\"size\">" + size + "</span> </div><div class=\"color\"><span class=\"abv\">" + color + "</span></div>  </div></div>  </div>");
+
+                }
+
+
+
+            });
+    </script>
+
+</body>
+
+
+</html>
