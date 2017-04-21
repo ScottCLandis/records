@@ -103,3 +103,13 @@ overflow: hidden;
 .search-bar {
     display: none;
 }
+.pop-up{
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    display: none;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}

@@ -6,6 +6,11 @@ $(document).ready(function () {
         $(".search-bar").show();
         $(".search-header").hide("fade");
     });
+    
+      $(".album-contain").click(function () {
+        $(".pop-up").show();
+        
+    });
 
 
 });
